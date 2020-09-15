@@ -32,16 +32,19 @@
         <script src="js/labels.js"></script>
         <script src="data/tracks_1.js"></script>
         <script src="data/mean_damage_index_2.js"></script>
-        <script src="data/vcuts_3.js"></script>
+        <script src="data/vcuts_view_3.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[13.22960030934619,144.32999677734873],[13.605768435481057,145.24193505857883]]);
+        })
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
         }
         map.createPane('pane_Guam_0');
         map.getPane('pane_Guam_0').style.zIndex = 400;
@@ -57,25 +60,10 @@
         function pop_tracks_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['stroke'] !== null ? autolinker.link(feature.properties['stroke'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['stroke-width'] !== null ? autolinker.link(feature.properties['stroke-width'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['stroke-opacity'] !== null ? autolinker.link(feature.properties['stroke-opacity'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['path'] !== null ? autolinker.link(feature.properties['path'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -111,32 +99,17 @@
         function pop_mean_damage_index_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['left'] !== null ? autolinker.link(feature.properties['left'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['top'] !== null ? autolinker.link(feature.properties['top'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['right'] !== null ? autolinker.link(feature.properties['right'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['bottom'] !== null ? autolinker.link(feature.properties['bottom'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['damage_mean'] !== null ? autolinker.link(feature.properties['damage_mean'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['mean_damage_index'] !== null ? autolinker.link(feature.properties['mean_damage_index'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
         function style_mean_damage_index_2_0(feature) {
-            if (feature.properties['damage_mean'] >= 0.000000 && feature.properties['damage_mean'] <= 0.000000 ) {
+            if (feature.properties['mean_damage_index'] >= 0.000000 && feature.properties['mean_damage_index'] <= 0.000000 ) {
                 return {
                 pane: 'pane_mean_damage_index_2',
                 opacity: 1,
@@ -151,7 +124,7 @@
                 interactive: true,
             }
             }
-            if (feature.properties['damage_mean'] >= 0.000000 && feature.properties['damage_mean'] <= 0.500000 ) {
+            if (feature.properties['mean_damage_index'] >= 0.000000 && feature.properties['mean_damage_index'] <= 0.500000 ) {
                 return {
                 pane: 'pane_mean_damage_index_2',
                 opacity: 1,
@@ -166,7 +139,7 @@
                 interactive: true,
             }
             }
-            if (feature.properties['damage_mean'] >= 0.500000 && feature.properties['damage_mean'] <= 1.500000 ) {
+            if (feature.properties['mean_damage_index'] >= 0.500000 && feature.properties['mean_damage_index'] <= 1.500000 ) {
                 return {
                 pane: 'pane_mean_damage_index_2',
                 opacity: 1,
@@ -181,7 +154,7 @@
                 interactive: true,
             }
             }
-            if (feature.properties['damage_mean'] >= 1.500000 && feature.properties['damage_mean'] <= 2.500000 ) {
+            if (feature.properties['mean_damage_index'] >= 1.500000 && feature.properties['mean_damage_index'] <= 2.500000 ) {
                 return {
                 pane: 'pane_mean_damage_index_2',
                 opacity: 1,
@@ -196,7 +169,7 @@
                 interactive: true,
             }
             }
-            if (feature.properties['damage_mean'] >= 2.500000 && feature.properties['damage_mean'] <= 3.500000 ) {
+            if (feature.properties['mean_damage_index'] >= 2.500000 && feature.properties['mean_damage_index'] <= 3.500000 ) {
                 return {
                 pane: 'pane_mean_damage_index_2',
                 opacity: 1,
@@ -211,7 +184,7 @@
                 interactive: true,
             }
             }
-            if (feature.properties['damage_mean'] >= 3.500000 && feature.properties['damage_mean'] <= 4.000000 ) {
+            if (feature.properties['mean_damage_index'] >= 3.500000 && feature.properties['mean_damage_index'] <= 4.000000 ) {
                 return {
                 pane: 'pane_mean_damage_index_2',
                 opacity: 1,
@@ -241,24 +214,18 @@
         });
         bounds_group.addLayer(layer_mean_damage_index_2);
         map.addLayer(layer_mean_damage_index_2);
-        function pop_vcuts_3(feature, layer) {
+        function pop_vcuts_view_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['frame_id'] !== null ? autolinker.link(feature.properties['frame_id'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(feature.properties['lat'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(feature.properties['lon'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['ROWID'] !== null ? autolinker.link(feature.properties['ROWID'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_vcuts_3_0() {
+        function style_vcuts_view_3_0() {
             return {
-                pane: 'pane_vcuts_3',
+                pane: 'pane_vcuts_view_3',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -269,31 +236,31 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(255,0,255,1.0)',
-                interactive: true,
+                interactive: false,
             }
         }
-        map.createPane('pane_vcuts_3');
-        map.getPane('pane_vcuts_3').style.zIndex = 403;
-        map.getPane('pane_vcuts_3').style['mix-blend-mode'] = 'normal';
-        var layer_vcuts_3 = new L.geoJson(json_vcuts_3, {
+        map.createPane('pane_vcuts_view_3');
+        map.getPane('pane_vcuts_view_3').style.zIndex = 403;
+        map.getPane('pane_vcuts_view_3').style['mix-blend-mode'] = 'normal';
+        var layer_vcuts_view_3 = new L.geoJson(json_vcuts_view_3, {
             attribution: '',
-            interactive: true,
-            dataVar: 'json_vcuts_3',
-            layerName: 'layer_vcuts_3',
-            pane: 'pane_vcuts_3',
-            onEachFeature: pop_vcuts_3,
+            interactive: false,
+            dataVar: 'json_vcuts_view_3',
+            layerName: 'layer_vcuts_view_3',
+            pane: 'pane_vcuts_view_3',
+            onEachFeature: pop_vcuts_view_3,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_vcuts_3_0(feature));
+                return L.circleMarker(latlng, style_vcuts_view_3_0(feature));
             },
         });
-        bounds_group.addLayer(layer_vcuts_3);
-        map.addLayer(layer_vcuts_3);
+        bounds_group.addLayer(layer_vcuts_view_3);
+        map.addLayer(layer_vcuts_view_3);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/vcuts_3.png" /> vcuts': layer_vcuts_3,'mean_damage_index<br /><table><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_Nodamage0.png" /></td><td>No damage</td></tr><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_00051.png" /></td><td>0.0 - 0.5</td></tr><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_05152.png" /></td><td>0.5 - 1.5</td></tr><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_15253.png" /></td><td>1.5 - 2.5</td></tr><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_25354.png" /></td><td>2.5 - 3.5</td></tr><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_35405.png" /></td><td>3.5 - 4.0</td></tr></table>': layer_mean_damage_index_2,'<img src="legend/tracks_1.png" /> tracks': layer_tracks_1,"Guam": layer_Guam_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/vcuts_view_3.png" /> vcuts_view': layer_vcuts_view_3,'mean_damage_index<br /><table><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_Nodamage0.png" /></td><td>No damage</td></tr><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_00051.png" /></td><td>0.0 - 0.5</td></tr><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_05152.png" /></td><td>0.5 - 1.5</td></tr><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_15253.png" /></td><td>1.5 - 2.5</td></tr><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_25354.png" /></td><td>2.5 - 3.5</td></tr><tr><td style="text-align: center;"><img src="legend/mean_damage_index_2_35405.png" /></td><td>3.5 - 4.0</td></tr></table>': layer_mean_damage_index_2,'<img src="legend/tracks_1.png" /> tracks': layer_tracks_1,"Guam": layer_Guam_0,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
