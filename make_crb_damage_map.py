@@ -2,7 +2,7 @@
 
 # This script is not yet complete.
 
-# After it gas run, zoom to the mean_damage_index layer.
+# After it has run, zoom to the mean_damage_index layer.
 
 # Use the qgis2web plugin to make an interactive web map
 # leaflet; Add layer list: expanded; extnet: fit layers extent; template:full_screen
@@ -21,7 +21,7 @@ def load_guam_osm():
 
 def load_layer_from_db(table_name):
     uri = QgsDataSourceUri()
-    uri.setDatabase('/home/aubrey/Documents/populate_spatialite/videosurvey.db')
+    uri.setDatabase('videosurvey.db')
     schema = ''
     table = table_name
     geom_column = 'geometry'
