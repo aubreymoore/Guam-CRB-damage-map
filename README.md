@@ -12,5 +12,5 @@ To regenerate the map:
 * Install the **qgis2web** QGIS plugin.
 * Run the python script. You can do this from the command line using:
 ```
-qgis --codepath make_crb_damage_map.py
+qgis --nologo --code make_crb_damage_map.py
 ```

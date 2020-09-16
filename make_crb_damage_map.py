@@ -9,6 +9,11 @@
 # Upload /tmp/qgis2web/qgis2web/qgis2web_2020_09_16-06_58_26_614131 to
 # https://github.com/aubreymoore/Guam-CRB-damage-map
 
+from qgis.utils import iface
+from qgis.core import *
+from PyQt5.QtGui import *
+
+
 def load_guam_osm():
     canvas = iface.mapCanvas()
     url = 'type=xyz&url=https://a.tile.openstreetmap.org/{z}/{x}/{y}.png&crs=EPSG3857'
