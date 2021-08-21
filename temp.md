@@ -1,6 +1,6 @@
 # Insect morphology, biology and diversity
 ## Basic insect taxonomy
-### Planet Bob
+Planet Bob
 ## Insect diversity
 
 # Insect ecology
