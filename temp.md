@@ -1,12 +1,14 @@
 # PART 1: Insect morphology, biology and diversity
 survey of insect orders
-## Basic insect taxonomy
+## Topic: Basic insect taxonomy
 Planet Bob
-## Insect diversity
+## Topic: Insect diversity
 
 # Part 2: Insect ecology
-## sub
-### susbsubs
+## Topic:
+susbsubs
 
 # Part 3: Major topics in entomology
+## Topic:
+Details
 
